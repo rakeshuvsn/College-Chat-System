@@ -35,8 +35,8 @@ export class SignupComponent implements OnInit {
     if ( this.signupForm.valid) {
       console.log(`Email: ${email}, password: ${password}`);
     } else {
-      const failedLoginAlert = new Alert('Please enter valid name, email, password details', AlertType.Danger);
-      this.alertService.alerts.next(failedLoginAlert);
+      const failedSignedAlert = new Alert('Please enter valid name, email, password details', AlertType.Danger);
+      this.alertService.alerts.next(failedSignedAlert);
     }
 
   }

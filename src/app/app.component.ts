@@ -11,6 +11,7 @@ import { AlertService } from './services/alert.service';
 export class AppComponent implements OnInit {
 
   public alerts: Array<Alert> = [];
+  public loading: Boolean = false;
 
   constructor(private alertService: AlertService) {
     setTheme('bs4');
@@ -19,6 +20,6 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.alertService.alerts.subscribe(alert => {
       this.alerts.push(alert);
-    })
+    });
   }
 }

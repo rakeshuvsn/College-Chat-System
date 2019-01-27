@@ -3,6 +3,10 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+import { AlertModule, AlertConfig } from 'ngx-bootstrap';
+import { NgxLoadingModule } from 'ngx-loading';
+
+//components
 import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
@@ -13,8 +17,11 @@ import { ChatroomListComponent } from './pages/chat/components/chatroom-list/cha
 import { ChatroomTitleBarComponent } from './pages/chat/components/chatroom-title-bar/chatroom-title-bar.component';
 import { ChatroomWindowComponent } from './pages/chat/components/chatroom-window/chatroom-window.component';
 import { ChatMessageComponent } from './pages/chat/components/chat-message/chat-message.component';
-import { AlertModule, AlertConfig } from 'ngx-bootstrap';
+
+//services
 import { AlertService } from './services/alert.service';
+import { LoadingService } from './services/loading.service';
+
 
 
 @NgModule({
@@ -34,10 +41,11 @@ import { AlertService } from './services/alert.service';
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,
-    AlertModule,
+    AlertModule.forRoot(),
+    NgxLoadingModule.forRoot({}),
     AppRoutingModule
   ],
-  providers: [AlertService, AlertConfig],
+  providers: [AlertService, AlertConfig, LoadingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -3,8 +3,15 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+import { environment } from './../environments/environment';
+
+//External Modules
 import { AlertModule, AlertConfig } from 'ngx-bootstrap';
 import { NgxLoadingModule } from 'ngx-loading';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule, FirestoreSettingsToken } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from 'angularfire2/storage';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 
 //components
 import { AppComponent } from './app.component';
@@ -21,6 +28,10 @@ import { ChatMessageComponent } from './pages/chat/components/chat-message/chat-
 //services
 import { AlertService } from './services/alert.service';
 import { LoadingService } from './services/loading.service';
+import { AuthService } from './services/auth.service';
+
+//guards
+import {AuthGuard} from './guards/auth.guard';
 
 
 
@@ -43,9 +54,13 @@ import { LoadingService } from './services/loading.service';
     FormsModule,
     AlertModule.forRoot(),
     NgxLoadingModule.forRoot({}),
-    AppRoutingModule
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    AngularFireStorageModule,
+    AngularFireAuthModule,
   ],
-  providers: [AlertService, AlertConfig, LoadingService],
+  providers: [AlertService, AlertConfig, LoadingService, AuthService, AuthGuard, { provide: FirestoreSettingsToken, useValue: {} }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

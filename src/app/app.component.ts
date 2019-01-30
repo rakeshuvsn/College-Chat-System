@@ -14,7 +14,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   private subscriptions: Subscription[] = [];
   public alerts: Array<Alert> = [];
-  public loading: Boolean = false;
+  public loading: Boolean;
 
   constructor(
     private alertService: AlertService,

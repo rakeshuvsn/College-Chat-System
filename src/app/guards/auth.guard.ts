@@ -21,17 +21,13 @@ export class AuthGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | boolean {
-    return this.authService.currentUser.pipe(
-      take(1),
-      map((currentUser) => !!currentUser),
-      tap((loggedIn) => {
-        if (!loggedIn) {
-          this.alertService.alerts.next(new Alert('You must be logged in.', AlertType.Danger));
-          this.router.navigate(['/login'], {queryParams: {returnUrl: state.url}});
-        } else {
-          this.router.navigate(['/chat']);
-        }
-      })
-    );
+      console.log(this.authService.authenticated);
+    if (this.authService.authenticated) {
+      return true;
+    } else {
+      this.router.navigateByUrl('/login');
+      this.alertService.alerts.next(new Alert('You Must Sign In.', AlertType.Danger));
+      return false;
+    }
   }
 }

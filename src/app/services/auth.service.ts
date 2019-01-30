@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { AlertType } from './../enums/alert-type.enum';
 import { Router } from '@angular/router';
@@ -17,6 +17,9 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firest
 export class AuthService {
 
   public currentUser: Observable<User | null>;
+  public currentUserSnapShot: User | null;
+  public authState: any | null;
+  public isLoggedIn: EventEmitter<boolean>  = new EventEmitter();
 
   constructor(
     private router: Router,
@@ -24,14 +27,23 @@ export class AuthService {
     private afAuth: AngularFireAuth,
     private db: AngularFirestore
   ) {
-    this.currentUser = this.afAuth.authState
-      .pipe(switchMap((user) => {
+
+    this.currentUser = this.afAuth.authState.pipe(switchMap((user) => {
         if (user) {
+          this.authState = user;
+          this.isLoggedIn.emit(true);
           return this.db.doc<User>(`users/${user.uid}`).valueChanges();
         } else {
           return of(null);
         }
-      }));
+      })
+    );
+
+    this.setCurrentUserSnapShot();
+  }
+
+  get authenticated(): boolean {
+    return this.authState !== null;
   }
 
   public signup(firstName: string, lastName: string, email: string, password: string): Observable<boolean> {
@@ -58,11 +70,33 @@ export class AuthService {
   }
 
   public login(email: string, password: string): Observable<boolean> {
-    return of(true);
+    return from(
+      this.afAuth.auth.signInWithEmailAndPassword(email, password).then((user) => {
+        this.isLoggedIn.emit(true);
+        return true;
+      }).catch((error) => {
+        console.log(error);
+        return false;
+      })
+    );
   }
 
   public logout(): void {
-    this.router.navigate(['/login']);
-    this.alertService.alerts.next(new Alert('You have been signed out.'));
+    this.afAuth.auth.signOut().then((success) => {
+      this.authState = null;
+      this.currentUser = of(null);
+      this.isLoggedIn.emit(false);
+      this.router.navigate(['/login']);
+      this.alertService.alerts.next(new Alert('You have been signed out.', AlertType.Success));
+    }).catch(error => {
+      this.alertService.alerts.next(new Alert('You have been signed out.', AlertType.Danger));
+    });
+
+  }
+
+  private setCurrentUserSnapShot(): void {
+    this.currentUser.subscribe(user => {
+      this.currentUserSnapShot = user;
+    });
   }
 }

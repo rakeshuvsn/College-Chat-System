@@ -29,6 +29,7 @@ import { ChatMessageComponent } from './pages/chat/components/chat-message/chat-
 import { AlertService } from './services/alert.service';
 import { LoadingService } from './services/loading.service';
 import { AuthService } from './services/auth.service';
+import { ChatroomService } from './services/chatroom.service';
 
 //guards
 import {AuthGuard} from './guards/auth.guard';
@@ -60,7 +61,7 @@ import {AuthGuard} from './guards/auth.guard';
     AngularFireStorageModule,
     AngularFireAuthModule,
   ],
-  providers: [AlertService, AlertConfig, LoadingService, AuthService, AuthGuard, { provide: FirestoreSettingsToken, useValue: {} }],
+  providers: [AlertService, ChatroomService, AlertConfig, LoadingService, AuthService, AuthGuard, { provide: FirestoreSettingsToken, useValue: {} }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

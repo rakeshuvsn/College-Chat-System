@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ChatroomService} from '../../../../services/chatroom.service';
 
 @Component({
   selector: 'app-chat-input',
@@ -9,14 +10,16 @@ export class ChatInputComponent implements OnInit {
 
   public newMessageText: string = '';
 
-  constructor() { }
+  constructor(
+    private chatroomService: ChatroomService
+  ) { }
 
   ngOnInit() {
   }
 
   public submit(message: string): void {
 
-    console.log('New Message: ', message);
+    this.chatroomService.createMessage(message);
 
     this.newMessageText = '';
   }

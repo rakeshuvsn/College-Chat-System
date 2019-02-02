@@ -33,6 +33,8 @@ import { ChatroomService } from './services/chatroom.service';
 
 //guards
 import {AuthGuard} from './guards/auth.guard';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { AdminComponent } from './pages/admin/admin.component';
 
 
 
@@ -47,7 +49,9 @@ import {AuthGuard} from './guards/auth.guard';
     ChatroomListComponent,
     ChatroomTitleBarComponent,
     ChatroomWindowComponent,
-    ChatMessageComponent
+    ChatMessageComponent,
+    ProfileComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

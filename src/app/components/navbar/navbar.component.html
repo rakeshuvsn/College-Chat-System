@@ -7,6 +7,9 @@
           <a routerLink="/chat" routerLinkActive="active" class="nav-link">Chat Rooms</a>
         </li>
         <li class="nav-item">
+          <a routerLink="/profile" routerLinkActive="active" class="nav-link">Profile</a>
+        </li>
+        <li class="nav-item">
           <a  class="nav-link" (click)="logout()">Logout</a>
         </li>
       </ul>
@@ -16,6 +19,9 @@
 
 <ng-template #loggedOut>
   <ul class="navbar-nav">
+    <li class="nav-item">
+      <a routerLink="/login" routerLinkActive="active" class="nav-link">Admin</a>
+    </li>
     <li class="nav-item">
       <a routerLink="/login" routerLinkActive="active" class="nav-link">Login</a>
     </li>

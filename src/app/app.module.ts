@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { environment } from './../environments/environment';
 
 //External Modules
-import { AlertModule, AlertConfig } from 'ngx-bootstrap';
+import { AlertModule, AlertConfig, TabsModule, TabsetConfig } from 'ngx-bootstrap';
 import { NgxLoadingModule } from 'ngx-loading';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule, FirestoreSettingsToken } from '@angular/fire/firestore';
@@ -59,13 +59,14 @@ import { AdminComponent } from './pages/admin/admin.component';
     FormsModule,
     AlertModule.forRoot(),
     NgxLoadingModule.forRoot({}),
+    TabsModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireStorageModule,
     AngularFireAuthModule,
   ],
-  providers: [AlertService, ChatroomService, AlertConfig, LoadingService, AuthService, AuthGuard, { provide: FirestoreSettingsToken, useValue: {} }],
+  providers: [AlertService, ChatroomService, AlertConfig, TabsetConfig, LoadingService, AuthService, AuthGuard, { provide: FirestoreSettingsToken, useValue: {} }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

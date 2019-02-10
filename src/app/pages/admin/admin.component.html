@@ -1,3 +1,155 @@
-<p>
-  admin works!
-</p>
+<div class="container mt-4 mb-4">
+  <tabset>
+    <tab heading="Register Students" id="tab1">
+      <div class="mt-4">
+        <div class="col-lg-12">
+          <div class="row">
+            <form [formGroup]="studentForm" (submit)="registerStudent(studentForm.value)">
+              <div class="col-sm-12">
+                <div class="row">
+                  <div class="col-sm-6 form-group">
+                    <label>First Name</label>
+                    <input type="text" [formControlName]="firstName" placeholder="Enter First Name Here.." class="form-control">
+                  </div>
+                  <div class="col-sm-6 form-group">
+                    <label>Last Name</label>
+                    <input type="text" [formControlName]="lastName" placeholder="Enter Last Name Here.." class="form-control">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Address</label>
+                  <textarea [formControlName]="address" placeholder="Enter Address Here.." rows="3" class="form-control"></textarea>
+                </div>
+                <div class="row">
+                  <div class="col-sm-4 form-group">
+                    <label>City</label>
+                    <input type="text" [formControlName]="city" placeholder="Enter City Name Here.." class="form-control">
+                  </div>
+                  <div class="col-sm-4 form-group">
+                    <label>State</label>
+                    <input type="text" [formControlName]="state" placeholder="Enter State Name Here.." class="form-control">
+                  </div>
+                  <div class="col-sm-4 form-group">
+                    <label>Zip</label>
+                    <input type="text" [formControlName]="zipcode" placeholder="Enter Zip Code Here.." class="form-control">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-6 form-group">
+                    <label>Department</label>
+                    <input type="text" [formControlName]="department" placeholder="Enter Department Here.." class="form-control">
+                  </div>
+                  <div class="col-sm-6 form-group">
+                    <label>Section</label>
+                    <input type="text" [formControlName]="section" placeholder="Enter Section Here.." class="form-control">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Phone Number</label>
+                  <input type="text" [formControlName]="phone" placeholder="Enter Phone Number Here.." class="form-control">
+                </div>
+                <div class="form-group">
+                  <label>Email Address</label>
+                  <input type="text" [formControlName]="email" placeholder="Enter Email Address Here.." class="form-control">
+                </div>
+                <div class="row">
+                  <div class="form-group col-sm-4">
+                    <label>Date of Birth</label>
+                    <input type="text" [formControlName]="dob" placeholder="Enter date of birth Here.." class="form-control">
+                  </div>
+                  <div class="form-group col-sm-4">
+                    <label>Student Id</label>
+                    <input type="text" [formControlName]="studentId" placeholder="Enter Student Id Here.." class="form-control">
+                  </div>
+                  <div class="form-group col-sm-4">
+                    <label>Role</label>
+                    <input type="text" [formControlName]="role" placeholder="Enter Role Here.." class="form-control">
+                  </div>
+                </div>
+
+                <button type="button" class="btn btn-lg btn-info">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </tab>
+    <tab heading="Register Faculty">
+      <div class="mt-4">
+        <div class="col-lg-12">
+          <div class="row">
+            <form [formGroup]="facultyForm" (submit)="registerFaculty(facultyForm.value)">
+              <div class="col-sm-12">
+                <div class="row">
+                  <div class="col-sm-6 form-group">
+                    <label>First Name</label>
+                    <input type="text" [formControlName]="firstName" placeholder="Enter First Name Here.." class="form-control">
+                  </div>
+                  <div class="col-sm-6 form-group">
+                    <label>Last Name</label>
+                    <input type="text" [formControlName]="lastName" placeholder="Enter Last Name Here.." class="form-control">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Address</label>
+                  <textarea [formControlName]="address" placeholder="Enter Address Here.." rows="3" class="form-control"></textarea>
+                </div>
+                <div class="row">
+                  <div class="col-sm-4 form-group">
+                    <label>City</label>
+                    <input type="text" [formControlName]="city" placeholder="Enter City Name Here.." class="form-control">
+                  </div>
+                  <div class="col-sm-4 form-group">
+                    <label>State</label>
+                    <input type="text" [formControlName]="state" placeholder="Enter State Name Here.." class="form-control">
+                  </div>
+                  <div class="col-sm-4 form-group">
+                    <label>Zip</label>
+                    <input type="text" [formControlName]="zipcode" placeholder="Enter Zip Code Here.." class="form-control">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-6 form-group">
+                    <label>Department</label>
+                    <input type="text" [formControlName]="department" placeholder="Enter Department Here.." class="form-control">
+                  </div>
+                  <div class="col-sm-6 form-group">
+                    <label>Section</label>
+                    <input type="text" [formControlName]="section" placeholder="Enter Section Here.." class="form-control">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Phone Number</label>
+                  <input type="text" [formControlName]="phone" placeholder="Enter Phone Number Here.." class="form-control">
+                </div>
+                <div class="form-group">
+                  <label>Email Address</label>
+                  <input type="text" [formControlName]="email" placeholder="Enter Email Address Here.." class="form-control">
+                </div>
+                <div class="row">
+                  <div class="form-group col-sm-4">
+                    <label>Date of Birth</label>
+                    <input type="text" [formControlName]="dob" placeholder="Enter date of birth.." class="form-control">
+                  </div>
+                  <div class="form-group col-sm-4">
+                    <label>Faculty Id</label>
+                    <input type="text" [formControlName]="facultyId" placeholder="Enter Faculty Id Here.." class="form-control">
+                  </div>
+                  <div class="form-group col-sm-4">
+                    <label>Role</label>
+                    <input type="text" [formControlName]="role" placeholder="Enter Role Here.." class="form-control">
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-lg btn-info">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    </tab>
+    <tab heading="Register Department">
+
+    </tab>
+  </tabset>
+</div>

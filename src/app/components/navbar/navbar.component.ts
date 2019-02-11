@@ -1,6 +1,8 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit, TemplateRef} from '@angular/core';
 import {AuthService} from '../../services/auth.service';
 import { Subscription } from 'rxjs/Subscription';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+
 
 @Component({
   selector: 'app-navbar',
@@ -11,9 +13,11 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   isLoggedin = false;
   private subscriptions: Subscription[] = [];
+  modalRef: BsModalRef;
 
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private modalService: BsModalService
   ) {}
 
   ngOnInit() {
@@ -32,6 +36,14 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach(sub => {
       sub.unsubscribe();
     });
+  }
+
+  navigateToAdmin(template) {
+    this.openModal(template);
+  }
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
   }
 
 }

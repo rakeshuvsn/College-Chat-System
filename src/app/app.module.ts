@@ -6,7 +6,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { environment } from './../environments/environment';
 
 //External Modules
-import { AlertModule, AlertConfig, TabsModule, TabsetConfig } from 'ngx-bootstrap';
+import {
+  AlertModule,
+  AlertConfig,
+  TabsModule,
+  TabsetConfig,
+  ModalModule,
+  BsModalService,
+  ComponentLoaderFactory,
+  PositioningService
+} from 'ngx-bootstrap';
 import { NgxLoadingModule } from 'ngx-loading';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule, FirestoreSettingsToken } from '@angular/fire/firestore';
@@ -35,6 +44,10 @@ import { ChatroomService } from './services/chatroom.service';
 import {AuthGuard} from './guards/auth.guard';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { AdminComponent } from './pages/admin/admin.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { AdminLoginComponent } from './pages/admin/admin-login/admin-login.component';
+import {AdminGuard} from './guards/admin.guard';
+import {WebstorageService} from './services/webstorage.service';
 
 
 
@@ -51,14 +64,17 @@ import { AdminComponent } from './pages/admin/admin.component';
     ChatroomWindowComponent,
     ChatMessageComponent,
     ProfileComponent,
-    AdminComponent
+    AdminComponent,
+    FooterComponent,
+    AdminLoginComponent
   ],
   imports: [
     BrowserModule,
-    ReactiveFormsModule,
     FormsModule,
+    ReactiveFormsModule,
     AlertModule.forRoot(),
     NgxLoadingModule.forRoot({}),
+    ModalModule,
     TabsModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
@@ -66,7 +82,22 @@ import { AdminComponent } from './pages/admin/admin.component';
     AngularFireStorageModule,
     AngularFireAuthModule,
   ],
-  providers: [AlertService, ChatroomService, AlertConfig, TabsetConfig, LoadingService, AuthService, AuthGuard, { provide: FirestoreSettingsToken, useValue: {} }],
+  providers: [
+    AlertService,
+    ChatroomService,
+    BsModalService,
+    PositioningService,
+    ComponentLoaderFactory,
+    AlertConfig, TabsetConfig,
+    LoadingService,
+    WebstorageService,
+    AuthService,
+    AuthGuard, { provide: FirestoreSettingsToken, useValue: {} },
+    AdminGuard
+  ],
+  entryComponents: [
+    AdminLoginComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

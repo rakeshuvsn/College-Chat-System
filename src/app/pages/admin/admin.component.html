@@ -4,66 +4,79 @@
       <div class="mt-4">
         <div class="col-lg-12">
           <div class="row">
-            <form [formGroup]="studentForm" (submit)="registerStudent(studentForm.value)">
+            <form name="studentForm" [formGroup]="studentForm" (submit)="registerStudent()" novalidate>
               <div class="col-sm-12">
                 <div class="row">
                   <div class="col-sm-6 form-group">
                     <label>First Name</label>
-                    <input type="text" [formControlName]="firstName" placeholder="Enter First Name Here.." class="form-control">
+                    <input type="text" formControlName="firstName" placeholder="Enter First Name Here.." class="form-control">
                   </div>
                   <div class="col-sm-6 form-group">
                     <label>Last Name</label>
-                    <input type="text" [formControlName]="lastName" placeholder="Enter Last Name Here.." class="form-control">
+                    <input type="text" formControlName="lastName" placeholder="Enter Last Name Here.." class="form-control">
                   </div>
                 </div>
                 <div class="form-group">
                   <label>Address</label>
-                  <textarea [formControlName]="address" placeholder="Enter Address Here.." rows="3" class="form-control"></textarea>
+                  <textarea formControlName="address" placeholder="Enter Address Here.." rows="3" class="form-control"></textarea>
                 </div>
                 <div class="row">
                   <div class="col-sm-4 form-group">
                     <label>City</label>
-                    <input type="text" [formControlName]="city" placeholder="Enter City Name Here.." class="form-control">
+                    <input type="text" formControlName="city" placeholder="Enter City Name Here.." class="form-control">
                   </div>
                   <div class="col-sm-4 form-group">
                     <label>State</label>
-                    <input type="text" [formControlName]="state" placeholder="Enter State Name Here.." class="form-control">
+                    <input type="text" formControlName="state" placeholder="Enter State Name Here.." class="form-control">
                   </div>
                   <div class="col-sm-4 form-group">
                     <label>Zip</label>
-                    <input type="text" [formControlName]="zipcode" placeholder="Enter Zip Code Here.." class="form-control">
+                    <input type="text" formControlName="zipcode" placeholder="Enter Zip Code Here.." class="form-control">
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-sm-6 form-group">
                     <label>Department</label>
-                    <input type="text" [formControlName]="department" placeholder="Enter Department Here.." class="form-control">
+                    <select class="form-control" formControlName="department" id="studentDepartments">
+                      <option>ECE</option>
+                      <option>CSE</option>
+                      <option>IT</option>
+                      <option>CIVIL</option>
+                      <option>EEE</option>
+                      <option>MECH</option>
+                    </select>
                   </div>
                   <div class="col-sm-6 form-group">
                     <label>Section</label>
-                    <input type="text" [formControlName]="section" placeholder="Enter Section Here.." class="form-control">
+                    <select class="form-control" formControlName="section" id="studentSections">
+                      <option>A</option>
+                      <option>B</option>
+                      <option>C</option>
+                      <option>D</option>
+                      <option>E</option>
+                    </select>
                   </div>
                 </div>
                 <div class="form-group">
                   <label>Phone Number</label>
-                  <input type="text" [formControlName]="phone" placeholder="Enter Phone Number Here.." class="form-control">
+                  <input type="text" formControlName="phone" placeholder="Enter Phone Number Here.." class="form-control">
                 </div>
                 <div class="form-group">
                   <label>Email Address</label>
-                  <input type="text" [formControlName]="email" placeholder="Enter Email Address Here.." class="form-control">
+                  <input type="text" formControlName="email" placeholder="Enter Email Address Here.." class="form-control">
                 </div>
                 <div class="row">
                   <div class="form-group col-sm-4">
                     <label>Date of Birth</label>
-                    <input type="text" [formControlName]="dob" placeholder="Enter date of birth Here.." class="form-control">
+                    <input type="text" formControlName="dob" placeholder="Enter date of birth Here.." class="form-control">
                   </div>
                   <div class="form-group col-sm-4">
                     <label>Student Id</label>
-                    <input type="text" [formControlName]="studentId" placeholder="Enter Student Id Here.." class="form-control">
+                    <input type="text" formControlName="studentId" placeholder="Enter Student Id Here.." class="form-control">
                   </div>
                   <div class="form-group col-sm-4">
                     <label>Role</label>
-                    <input type="text" [formControlName]="role" placeholder="Enter Role Here.." class="form-control">
+                    <input type="text" formControlName="role" placeholder="Enter Role Here.." class="form-control">
                   </div>
                 </div>
 
@@ -78,66 +91,78 @@
       <div class="mt-4">
         <div class="col-lg-12">
           <div class="row">
-            <form [formGroup]="facultyForm" (submit)="registerFaculty(facultyForm.value)">
+            <form name="facultyForm" [formGroup]="facultyForm" (submit)="registerFaculty()" novalidate>
               <div class="col-sm-12">
                 <div class="row">
                   <div class="col-sm-6 form-group">
                     <label>First Name</label>
-                    <input type="text" [formControlName]="firstName" placeholder="Enter First Name Here.." class="form-control">
+                    <input type="text" formControlName="firstName" placeholder="Enter First Name Here.." class="form-control">
                   </div>
                   <div class="col-sm-6 form-group">
                     <label>Last Name</label>
-                    <input type="text" [formControlName]="lastName" placeholder="Enter Last Name Here.." class="form-control">
+                    <input type="text" formControlName="lastName" placeholder="Enter Last Name Here.." class="form-control">
                   </div>
                 </div>
                 <div class="form-group">
                   <label>Address</label>
-                  <textarea [formControlName]="address" placeholder="Enter Address Here.." rows="3" class="form-control"></textarea>
+                  <textarea formControlName="address" placeholder="Enter Address Here.." rows="3" class="form-control"></textarea>
                 </div>
                 <div class="row">
                   <div class="col-sm-4 form-group">
                     <label>City</label>
-                    <input type="text" [formControlName]="city" placeholder="Enter City Name Here.." class="form-control">
+                    <input type="text" formControlName="city" placeholder="Enter City Name Here.." class="form-control">
                   </div>
                   <div class="col-sm-4 form-group">
                     <label>State</label>
-                    <input type="text" [formControlName]="state" placeholder="Enter State Name Here.." class="form-control">
+                    <input type="text" formControlName="state" placeholder="Enter State Name Here.." class="form-control">
                   </div>
                   <div class="col-sm-4 form-group">
                     <label>Zip</label>
-                    <input type="text" [formControlName]="zipcode" placeholder="Enter Zip Code Here.." class="form-control">
+                    <input type="text" formControlName="zipcode" placeholder="Enter Zip Code Here.." class="form-control">
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-sm-6 form-group">
                     <label>Department</label>
-                    <input type="text" [formControlName]="department" placeholder="Enter Department Here.." class="form-control">
+                    <select class="form-control" formControlName="department" id="facultyDepartments">
+                      <option>ECE</option>
+                      <option>CSE</option>
+                      <option>IT</option>
+                      <option>CIVIL</option>
+                      <option>EEE</option>
+                      <option>MECH</option>
+                    </select>
                   </div>
                   <div class="col-sm-6 form-group">
-                    <label>Section</label>
-                    <input type="text" [formControlName]="section" placeholder="Enter Section Here.." class="form-control">
+                    <label>Designation</label>
+                    <select class="form-control" formControlName="designation" id="facultySections">
+                      <option>Associate</option>
+                      <option>Assistant</option>
+                      <option>Lab Incharge</option>
+                      <option>Head of Department</option>
+                    </select>
                   </div>
                 </div>
                 <div class="form-group">
                   <label>Phone Number</label>
-                  <input type="text" [formControlName]="phone" placeholder="Enter Phone Number Here.." class="form-control">
+                  <input type="text" formControlName="phone" placeholder="Enter Phone Number Here.." class="form-control">
                 </div>
                 <div class="form-group">
                   <label>Email Address</label>
-                  <input type="text" [formControlName]="email" placeholder="Enter Email Address Here.." class="form-control">
+                  <input type="text" formControlName="email" placeholder="Enter Email Address Here.." class="form-control">
                 </div>
                 <div class="row">
                   <div class="form-group col-sm-4">
                     <label>Date of Birth</label>
-                    <input type="text" [formControlName]="dob" placeholder="Enter date of birth.." class="form-control">
+                    <input type="text" formControlName="dob" placeholder="Enter date of birth.." class="form-control">
                   </div>
                   <div class="form-group col-sm-4">
                     <label>Faculty Id</label>
-                    <input type="text" [formControlName]="facultyId" placeholder="Enter Faculty Id Here.." class="form-control">
+                    <input type="text" formControlName="facultyId" placeholder="Enter Faculty Id Here.." class="form-control">
                   </div>
                   <div class="form-group col-sm-4">
                     <label>Role</label>
-                    <input type="text" [formControlName]="role" placeholder="Enter Role Here.." class="form-control">
+                    <input type="text" formControlName="role" placeholder="Enter Role Here.." class="form-control">
                   </div>
                 </div>
                 <button type="submit" class="btn btn-lg btn-info">Submit</button>
@@ -149,7 +174,48 @@
 
     </tab>
     <tab heading="Register Department">
-
+      <div class="mt-4">
+        <div class="col-lg-12">
+          <div class="row">
+            <form name="facultyForm" [formGroup]="departmentForm" (submit)="registerDepartment()" novalidate>
+              <div class="col-sm-12">
+                <div class="row">
+                  <div class="col-sm-6 form-group">
+                    <label>Department Name</label>
+                    <input type="text" formControlName="departmentName" placeholder="Enter Department Name Here.." class="form-control">
+                  </div>
+                  <div class="col-sm-6 form-group">
+                    <label>Sections</label>
+                    <select class="form-control" formControlName="sections" id="departmentSections">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-6 form-group">
+                    <label>Phone Number</label>
+                    <input type="number" formControlName="departmentPhone" placeholder="Enter Phone Here.." class="form-control">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-sm-6">
+                    <label>Department Email Address</label>
+                    <input type="email" formControlName="departmentEmail" placeholder="Enter Email Address Here.." class="form-control">
+                  </div>
+                  <div class="form-group col-sm-6">
+                    <label>Start Date</label>
+                    <input type="date" formControlName="startDate" placeholder="Enter Start Date.." class="form-control">
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-lg btn-info">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     </tab>
   </tabset>
 </div>

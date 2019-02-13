@@ -51,7 +51,7 @@ export class AuthService {
     return from(
       this.afAuth.auth.createUserWithEmailAndPassword(email, password).then((user: any) => {
         const userRef: AngularFirestoreDocument<User> = this.db.doc(`users/${user.user.uid}`);
-        console.log(user);
+
         const updateUser = {
           id: user.user.uid,
           email: user.user.email,
@@ -79,6 +79,10 @@ export class AuthService {
         return false;
       })
     );
+  }
+
+  public adminLogin(): Observable<any> {
+    return this.db.collection('admin').doc('NIYfRjxKAfWFGbvCvex3').get();
   }
 
   public logout(): void {

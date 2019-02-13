@@ -10,12 +10,14 @@ export class AdminComponent implements OnInit {
 
   public studentForm: FormGroup;
   public facultyForm: FormGroup;
+  public departmentForm: FormGroup;
 
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
     this.createStudentForm();
     this.createFacultyForm();
+    this.createDepartmentForm();
   }
 
   createStudentForm() {
@@ -28,7 +30,7 @@ export class AdminComponent implements OnInit {
       state: ['', [Validators.required]],
       city: ['', [Validators.required]],
       zipcode: ['', [Validators.minLength(6)]],
-      role: ['Student', [Validators.required]],
+      role: [{value: 'Student', disabled: true}, [Validators.required]],
       studentId: ['', [Validators.required]],
       department: ['', [Validators.required]],
       section: ['', [Validators.required]],
@@ -47,11 +49,24 @@ export class AdminComponent implements OnInit {
       state: ['', [Validators.required]],
       city: ['', [Validators.required]],
       zipcode: ['', [Validators.minLength(6)]],
-      role: ['Faculty', [Validators.required]],
+      role: [{value: 'Faculty', disabled: true}, [Validators.required]],
       facultyId: ['', [Validators.required]],
       department: ['', [Validators.required]],
-      section: ['', [Validators.required]],
+      designation: ['', [Validators.required]],
       dob: ['', [Validators.required]],
+      registeredDate: new Date()
+    });
+  }
+
+  createDepartmentForm() {
+    this.departmentForm = this.fb.group({
+      departmentName: ['', [Validators.required, Validators.minLength(3)]],
+      sections: ['', [Validators.required, Validators.minLength(3)]],
+      departmentHeadId: ['', [Validators.required]],
+      departmentHeadName: ['', [Validators.required]],
+      departmentEmail: ['', [Validators.email]],
+      departmentPhone: ['', [Validators.minLength(10)]],
+      startDate: ['', [Validators.required]],
       registeredDate: new Date()
     });
   }
@@ -62,6 +77,10 @@ export class AdminComponent implements OnInit {
   }
 
   registerStudent() {
+
+  }
+
+  registerDepartment() {
 
   }
 

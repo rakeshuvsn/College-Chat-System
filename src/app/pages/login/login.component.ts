@@ -7,6 +7,7 @@ import { LoadingService } from '../../services/loading.service';
 import { Subscription } from 'rxjs/Subscription';
 import {AuthService} from '../../services/auth.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {WebstorageService} from "../../services/webstorage.service";
 
 @Component({
   selector: 'app-login',
@@ -25,7 +26,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     private loadingService: LoadingService,
     private authService: AuthService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private webStorage: WebstorageService
   ) {
     this.createForm();
   }
@@ -48,6 +50,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.subscriptions.push(
         this.authService.login(email, password).subscribe(isSuccess => {
           console.log('reached', this.returnUrl);
+          this.webStorage.setLoginStatus(true, 'user');
           if ( isSuccess ) {
             this.router.navigateByUrl(this.returnUrl);
             this.loadingService.isLoading.next(false);

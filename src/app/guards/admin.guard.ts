@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
+import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router} from '@angular/router';
 import { Observable } from 'rxjs';
-import { AlertType } from './../enums/alert-type.enum';
-import { AlertService } from './../services/alert.service';
+import {AuthService} from '../services/auth.service';
+import {AlertService} from '../services/alert.service';
+import {AlertType} from '../enums/alert-type.enum';
 import { Alert } from './../classes/alert';
-import { AuthService } from './../services/auth.service';
 import {WebstorageService} from '../services/webstorage.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+export class AdminGuard implements CanActivate {
 
   constructor(
     private authService: AuthService,
@@ -21,8 +21,9 @@ export class AuthGuard implements CanActivate {
 
   canActivate(
     next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean> | boolean {
-    if (this.authService.authenticated && this.webStorage.getLoginStatus().role !== 'admin') {
+    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+
+    if (this.webStorage.getLoginStatus().role === 'admin' && this.webStorage.getLoginStatus().isLoggedIn) {
       return true;
     } else {
       this.router.navigateByUrl('/login');

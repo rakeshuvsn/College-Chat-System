@@ -45,6 +45,9 @@ import {AuthGuard} from './guards/auth.guard';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { AdminLoginComponent } from './pages/admin/admin-login/admin-login.component';
+import {AdminGuard} from './guards/admin.guard';
+import {WebstorageService} from './services/webstorage.service';
 
 
 
@@ -62,7 +65,8 @@ import { FooterComponent } from './components/footer/footer.component';
     ChatMessageComponent,
     ProfileComponent,
     AdminComponent,
-    FooterComponent
+    FooterComponent,
+    AdminLoginComponent
   ],
   imports: [
     BrowserModule,
@@ -86,8 +90,13 @@ import { FooterComponent } from './components/footer/footer.component';
     ComponentLoaderFactory,
     AlertConfig, TabsetConfig,
     LoadingService,
+    WebstorageService,
     AuthService,
-    AuthGuard, { provide: FirestoreSettingsToken, useValue: {} }
+    AuthGuard, { provide: FirestoreSettingsToken, useValue: {} },
+    AdminGuard
+  ],
+  entryComponents: [
+    AdminLoginComponent
   ],
   bootstrap: [AppComponent]
 })

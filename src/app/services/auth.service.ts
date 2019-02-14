@@ -10,6 +10,7 @@ import { switchMap } from 'rxjs/Operators';
 import { from } from 'rxjs';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import {WebstorageService} from './webstorage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -25,13 +26,15 @@ export class AuthService {
     private router: Router,
     private alertService: AlertService,
     private afAuth: AngularFireAuth,
-    private db: AngularFirestore
+    private db: AngularFirestore,
+    private webStorage: WebstorageService
   ) {
 
     this.currentUser = this.afAuth.authState.pipe(switchMap((user) => {
         if (user) {
           this.authState = user;
           this.isLoggedIn.emit(true);
+          this.webStorage.setLoginStatus(true, 'user');
           return this.db.doc<User>(`users/${user.uid}`).valueChanges();
         } else {
           return of(null);
@@ -73,6 +76,7 @@ export class AuthService {
     return from(
       this.afAuth.auth.signInWithEmailAndPassword(email, password).then((user) => {
         this.isLoggedIn.emit(true);
+        this.webStorage.setLoginStatus(true, 'user');
         return true;
       }).catch((error) => {
         console.log(error);
@@ -90,12 +94,18 @@ export class AuthService {
       this.authState = null;
       this.currentUser = of(null);
       this.isLoggedIn.emit(false);
+      this.webStorage.setLoginStatus(false, '');
       this.router.navigate(['/login']);
       this.alertService.alerts.next(new Alert('You have been signed out.', AlertType.Success));
     }).catch(error => {
       this.alertService.alerts.next(new Alert('You have been signed out.', AlertType.Danger));
     });
 
+  }
+
+  public findUser(userId): Observable<any> {
+    const users = [];
+    return this.db.collection('students').valueChanges();
   }
 
   private setCurrentUserSnapShot(): void {

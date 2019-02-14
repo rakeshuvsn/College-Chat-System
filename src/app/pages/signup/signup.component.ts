@@ -38,33 +38,42 @@ export class SignupComponent implements OnInit, OnDestroy {
     this.signupForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]],
-      firstName: ['', [Validators.required, Validators.minLength(3)]],
-      lastName: ['', [Validators.required, Validators.minLength(3)]]
+      studentId: ['', [Validators.required]],
+      confirmPassword: ['', [Validators.required, Validators.minLength(8)]]
     });
   }
 
   public submit(): void {
-    const { email, password, firstName, lastName } = this.signupForm.value;
+    const { email, password, studentId } = this.signupForm.value;
 
-    if ( this.signupForm.valid) {
-      this.loadingService.isLoading.next(true);
-      this.subscriptions.push(
-        this.authService.signup(firstName, lastName, email, password).subscribe(isSuccess => {
-          if (isSuccess) {
-            console.log(this.returnUrl);
-            this.router.navigate([this.returnUrl]);
-            this.loadingService.isLoading.next(false);
-          } else {
-            const failedSignedAlert = new Alert('There is a problem in creating your account!!', AlertType.Danger);
-            this.alertService.alerts.next(failedSignedAlert);
-            this.loadingService.isLoading.next(false);
-          }
-        })
-      );
+    if (this.signupForm.controls['password'].value === this.signupForm.controls['confirmPassword'].value) {
+      if ( this.signupForm.valid) {
+        this.loadingService.isLoading.next(true);
+        this.subscriptions.push(
+          this.authService.findUser(studentId).subscribe(data => {
+            console.log(data);
+            /*this.authService.signup(firstName, lastName, email, password).subscribe(isSuccess => {
+              if (isSuccess) {
+                console.log(this.returnUrl);
+                this.router.navigate([this.returnUrl]);
+                this.loadingService.isLoading.next(false);
+              } else {
+                const failedSignedAlert = new Alert('There is a problem in creating your account!!', AlertType.Danger);
+                this.alertService.alerts.next(failedSignedAlert);
+                this.loadingService.isLoading.next(false);
+              }
+            });*/
+          })
+        );
+      } else {
+        const failedSignedAlert = new Alert('Please enter valid name, email, password details', AlertType.Danger);
+        this.alertService.alerts.next(failedSignedAlert);
+      }
     } else {
-      const failedSignedAlert = new Alert('Please enter valid name, email, password details', AlertType.Danger);
-      this.alertService.alerts.next(failedSignedAlert);
+      this.alertService.alerts.next(new Alert('Your Passwords should match', AlertType.Danger));
     }
+
+
 
   }
 

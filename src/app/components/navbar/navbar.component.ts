@@ -8,6 +8,7 @@ import { AlertType } from '../../enums/alert-type.enum';
 import { AlertService } from '../../services/alert.service';
 import { Alert } from '../../classes/alert';
 import {AdminLoginComponent} from '../../pages/admin/admin-login/admin-login.component';
+import {WebstorageService} from '../../services/webstorage.service';
 
 @Component({
   selector: 'app-navbar',
@@ -18,6 +19,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   bsModalRef: BsModalRef;
 
   isLoggedin = false;
+  role: String;
   private subscriptions: Subscription[] = [];
   adminLoginForm: FormGroup;
 
@@ -26,10 +28,18 @@ export class NavbarComponent implements OnInit, OnDestroy {
     private modalService: BsModalService,
     private fb: FormBuilder,
     private router: Router,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private webStorage: WebstorageService
   ) {}
 
   ngOnInit() {
+    if (this.webStorage.getLoginStatus().isLoggedIn) {
+      this.isLoggedin = true;
+      this.role = this.webStorage.getLoginStatus().role;
+    } else {
+      this.isLoggedin = false;
+    }
+
     this.subscriptions.push(
       this.authService.isLoggedIn.subscribe(value => {
         this.isLoggedin = value;

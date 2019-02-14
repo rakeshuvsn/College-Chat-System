@@ -44,6 +44,7 @@ export class AdminLoginComponent implements OnInit {
       if ( document.data().username === username && document.data().password === password) {
         this.webStorage.setLoginStatus(true, 'admin');
         this.modalRef.hide();
+        this.authService.isLoggedIn.emit(true);
         this.router.navigate(['/admin']);
       } else {
         this.modalRef.hide();

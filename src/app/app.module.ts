@@ -48,6 +48,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { AdminLoginComponent } from './pages/admin/admin-login/admin-login.component';
 import {AdminGuard} from './guards/admin.guard';
 import {WebstorageService} from './services/webstorage.service';
+import {AdminService} from './services/admin.service';
 
 
 
@@ -93,7 +94,8 @@ import {WebstorageService} from './services/webstorage.service';
     WebstorageService,
     AuthService,
     AuthGuard, { provide: FirestoreSettingsToken, useValue: {} },
-    AdminGuard
+    AdminGuard,
+    AdminService
   ],
   entryComponents: [
     AdminLoginComponent

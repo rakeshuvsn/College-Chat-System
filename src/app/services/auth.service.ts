@@ -10,6 +10,7 @@ import { switchMap } from 'rxjs/Operators';
 import { from } from 'rxjs';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import {WebstorageService} from './webstorage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -25,13 +26,15 @@ export class AuthService {
     private router: Router,
     private alertService: AlertService,
     private afAuth: AngularFireAuth,
-    private db: AngularFirestore
+    private db: AngularFirestore,
+    private webStorage: WebstorageService
   ) {
 
     this.currentUser = this.afAuth.authState.pipe(switchMap((user) => {
         if (user) {
           this.authState = user;
           this.isLoggedIn.emit(true);
+          this.webStorage.setLoginStatus(true, 'user');
           return this.db.doc<User>(`users/${user.uid}`).valueChanges();
         } else {
           return of(null);
@@ -46,7 +49,7 @@ export class AuthService {
     return this.authState !== null;
   }
 
-  public signup(firstName: string, lastName: string, email: string, password: string): Observable<boolean> {
+  public signup(userObject: any, email: string, password: string): Observable<boolean> {
 
     return from(
       this.afAuth.auth.createUserWithEmailAndPassword(email, password).then((user: any) => {
@@ -55,8 +58,9 @@ export class AuthService {
         const updateUser = {
           id: user.user.uid,
           email: user.user.email,
-          firstName,
-          lastName,
+          firstName: userObject.firstName,
+          lastName: userObject.lastName,
+          roleId: userObject.roleId,
           photoUrl: 'https://firebasestorage.googleapis.com/v0/b/college-chat-36c01.appspot.com/o/default_profile_pic.png?alt=media&token=8f4f7703-e69c-44d8-9bc5-54a9d6806e97'
         };
 
@@ -73,6 +77,7 @@ export class AuthService {
     return from(
       this.afAuth.auth.signInWithEmailAndPassword(email, password).then((user) => {
         this.isLoggedIn.emit(true);
+        this.webStorage.setLoginStatus(true, 'user');
         return true;
       }).catch((error) => {
         console.log(error);
@@ -90,12 +95,17 @@ export class AuthService {
       this.authState = null;
       this.currentUser = of(null);
       this.isLoggedIn.emit(false);
+      this.webStorage.setLoginStatus(false, '');
       this.router.navigate(['/login']);
       this.alertService.alerts.next(new Alert('You have been signed out.', AlertType.Success));
     }).catch(error => {
       this.alertService.alerts.next(new Alert('You have been signed out.', AlertType.Danger));
     });
 
+  }
+
+  public getUsers(): Observable<any> {
+    return this.db.collection('students').valueChanges();
   }
 
   private setCurrentUserSnapShot(): void {

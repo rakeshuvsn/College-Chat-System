@@ -1,12 +1,12 @@
 <nav class="navbar navbar-expand-lg navbar-primary bg-primary">
   <div class="container">
-    <span class="navbar-brand">ChatApp</span>
+    <span class="navbar-brand">College E Talk</span>
     <div class="page-links">
       <ul class="navbar-nav" *ngIf="isLoggedin else loggedOut">
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="role!=='admin'">
           <a routerLink="/chat" routerLinkActive="active" class="nav-link">Chat Rooms</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="role!=='admin'">
           <a routerLink="/profile" routerLinkActive="active" class="nav-link">Profile</a>
         </li>
         <li class="nav-item">

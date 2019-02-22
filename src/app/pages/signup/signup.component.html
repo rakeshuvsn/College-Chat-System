@@ -4,8 +4,14 @@
     <form [formGroup]="signupForm" novalidate>
       <div class="name-wrapper d-flex">
         <div class="form-group student-id">
-          <input type="text" class="form-control" id="studentId-input" placeholder="Enter Your Student Id" formControlName="studentId">
+          <input type="text" class="form-control" id="studentId-input" placeholder="Enter Your Id" formControlName="userId">
         </div>
+      </div>
+      <div class="form-group">
+        <select class="form-control" formControlName="role" id="facultySections">
+          <option value="Student">Student</option>
+          <option value="Faculty">Faculty</option>
+        </select>
       </div>
       <div class="form-group">
         <input type="email" class="form-control" id="email-input" placeholder="Enter Email" formControlName="email">

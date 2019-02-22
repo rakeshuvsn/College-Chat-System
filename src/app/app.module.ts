@@ -49,6 +49,7 @@ import { AdminLoginComponent } from './pages/admin/admin-login/admin-login.compo
 import {AdminGuard} from './guards/admin.guard';
 import {WebstorageService} from './services/webstorage.service';
 import {AdminService} from './services/admin.service';
+import {HttpService} from './services/http.service';
 
 
 
@@ -95,7 +96,8 @@ import {AdminService} from './services/admin.service';
     AuthService,
     AuthGuard, { provide: FirestoreSettingsToken, useValue: {} },
     AdminGuard,
-    AdminService
+    AdminService,
+    HttpService
   ],
   entryComponents: [
     AdminLoginComponent

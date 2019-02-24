@@ -1,3 +1,9 @@
 <div class="room-title">
-  <h4>{{title}}</h4>
+  <h4>
+    {{title}}
+    <div class="upload-btn-wrapper float-right">
+      <button class="btn" >Upload +</button>
+      <input type="file" name="myfile" (change)="uploadAttachements($event.target.files)" multiple="false"/>
+    </div>
+  </h4>
 </div>

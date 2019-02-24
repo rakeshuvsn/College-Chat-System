@@ -7,6 +7,7 @@ import { switchMap, map } from 'rxjs/Operators';
 import { of } from 'rxjs/Observable/of';
 import {AuthService} from './auth.service';
 import 'rxjs/add/operator/map';
+import { AngularFireStorage  } from '@angular/fire/storage';
 
 
 @Injectable({
@@ -22,7 +23,8 @@ export class ChatroomService {
   constructor(
     private db: AngularFirestore,
     private loadingService: LoadingService,
-    private authService: AuthService
+    private authService: AuthService,
+    private storage: AngularFireStorage
   ) {
 
     this.selectedChatroom = this.changeChatroom.pipe(switchMap(chatroomId => {
@@ -60,4 +62,23 @@ export class ChatroomService {
 
   }
 
+  public createAttachment(file) {
+    const chatroomId = this.changeChatroom.value;
+    const message = {
+      attachmentUrl: '',
+      name: file.name,
+      createdAt: new Date(),
+      sender: this.authService.currentUserSnapShot
+    };
+    return this.storage.upload(`chatrooms/${chatroomId}/${file.name}`, file).then(data => {
+      return data.ref.getDownloadURL().then(urlData => {
+        message.attachmentUrl = urlData;
+        return this.db.collection(`chatrooms/${chatroomId}/messages`).add(message).then(() => {
+          return {};
+        }).catch(error => {
+          console.log(error);
+        });
+      });
+    });
+  }
 }

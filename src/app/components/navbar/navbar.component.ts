@@ -33,7 +33,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    if (this.webStorage.getLoginStatus().isLoggedIn) {
+    if (this.webStorage.getLoginStatus().isLoggedIn === 'true') {
       this.isLoggedin = true;
       this.role = this.webStorage.getLoginStatus().role;
     } else {

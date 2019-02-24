@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ChatroomService} from '../../../../services/chatroom.service';
+import {WebstorageService} from '../../../../services/webstorage.service';
+
 
 @Component({
   selector: 'app-chatroom-list',
@@ -8,9 +10,13 @@ import {ChatroomService} from '../../../../services/chatroom.service';
 })
 export class ChatroomListComponent implements OnInit {
 
+  public currentUser: any;
   constructor(
-    private chatRoomService: ChatroomService
-  ) { }
+    private chatRoomService: ChatroomService,
+    private webStorage: WebstorageService
+  ) {
+    this.currentUser = this.webStorage.getUserObject().user;
+  }
 
   ngOnInit() {
   }

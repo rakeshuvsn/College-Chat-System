@@ -7,9 +7,13 @@
       {{message.sender.firstName}} {{message.sender.lastName}}
     </div>
     <small class="timestamp">{{message.createdAt.toDate() | date: 'medium'}} </small>
-    <div class="message">
+    <div *ngIf="message.message" class="message">
       {{message.message}}
     </div>
+    <div *ngIf="message.attachmentUrl" class="attachments">
+      <img src="{{message.attachmentUrl}}"  alt="" width="100%">
+      <button (click)="downloadAttachments()" class="btn"><i class="material-icons md-24">cloud_download</i></button>
+    </div>
+    <small *ngIf="message.name"  class="fileName">{{message.name}} </small>
   </div>
 </div>
-

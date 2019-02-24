@@ -78,6 +78,9 @@ export class AuthService {
       this.afAuth.auth.signInWithEmailAndPassword(email, password).then((user) => {
         this.isLoggedIn.emit(true);
         this.webStorage.setLoginStatus(true, 'user');
+        this.db.doc(`users/${user.user.uid}`).valueChanges().subscribe(data => {
+          this.webStorage.setUserObject(data);
+        });
         return true;
       }).catch((error) => {
         console.log(error);
@@ -96,6 +99,7 @@ export class AuthService {
       this.currentUser = of(null);
       this.isLoggedIn.emit(false);
       this.webStorage.setLoginStatus(false, '');
+      this.webStorage.setUserObject(null);
       this.router.navigate(['/login']);
       this.alertService.alerts.next(new Alert('You have been signed out.', AlertType.Success));
     }).catch(error => {

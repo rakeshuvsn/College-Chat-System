@@ -1,6 +1,6 @@
 <div class="h-100 d-flex flex-column chatroom-list">
   <ng-container *ngFor="let chatroom of chatRoomService.chatrooms | async">
-    <div class="chatroom-list-item">
+    <div *ngIf="currentUser && chatroom.branchId === currentUser.departmentId && chatroom.year === currentUser.year" class="chatroom-list-item">
       <a [routerLink]="['/chat', chatroom.id]">{{ chatroom.name }}</a>
     </div>
   </ng-container>

@@ -3,6 +3,14 @@
 }
 
 nav {
-  background: #328cc1;
+  background: #4caf50;
   padding: 1em;
+}
+
+nav {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
 }

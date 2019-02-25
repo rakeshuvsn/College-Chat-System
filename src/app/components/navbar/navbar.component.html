@@ -1,36 +1,36 @@
-<nav class="navbar navbar-expand-lg navbar-primary bg-primary">
-  <div class="container">
-    <span class="navbar-brand">College E Talk</span>
-    <div class="page-links">
-      <ul class="navbar-nav" *ngIf="isLoggedin else loggedOut">
-        <li class="nav-item" *ngIf="role!=='admin'">
-          <a routerLink="/chat" routerLinkActive="active" class="nav-link">Chat Rooms</a>
-        </li>
-        <li class="nav-item" *ngIf="role!=='admin'">
-          <a routerLink="/profile" routerLinkActive="active" class="nav-link">Profile</a>
-        </li>
-        <li class="nav-item">
-          <a  class="nav-link" (click)="logout()">Logout</a>
-        </li>
-      </ul>
-    </div>
+<nav class="navbar navbar-expand-lg">
+  <a class="navbar-brand" href="#">College - E - Talk</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav" *ngIf="isLoggedin else loggedOut">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/chat" *ngIf="role !== 'admin'" href="#">Chat Rooms</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/profile" *ngIf="role !== 'admin'" href="#">Profile</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " (click)="logout()" href="#">Logout</a>
+      </li>
+    </ul>
   </div>
 </nav>
 
 <ng-template #loggedOut>
-  <ul class="navbar-nav">
-    <li class="nav-item">
-      <a (click)="navigateToAdmin()" routerLinkActive="active" class="nav-link">Admin</a>
+  <ul class="navbar-nav" >
+    <li class="nav-item active">
+      <a class="nav-link" (click)="navigateToAdmin()" routerLinkActive="active" >Admin <span class="sr-only">(current)</span></a>
     </li>
     <li class="nav-item">
-      <a routerLink="/login" routerLinkActive="active" class="nav-link">Login</a>
+      <a class="nav-link" routerLink="/login"   routerLinkActive="active"  >Login</a>
     </li>
     <li class="nav-item">
-      <a routerLink="/signup" routerLinkActive="active" class="nav-link">Sign up</a>
+      <a class="nav-link" routerLink="/signup"   routerLinkActive="active" >Sign Up</a>
     </li>
   </ul>
-</ng-template>
-
-<ng-template #template>
-
 </ng-template>

@@ -4,6 +4,14 @@
   color: #ffffff;
 }
 
+nav {
+  background: #4caf50;
+
+  button {
+    width: auto !important;
+  }
+}
+
 a {
   color: $light-grey;
   margin-left: 3em;

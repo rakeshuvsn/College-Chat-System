@@ -7,7 +7,7 @@ import { LoadingService } from '../../services/loading.service';
 import { Subscription } from 'rxjs/Subscription';
 import {AuthService} from '../../services/auth.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {WebstorageService} from "../../services/webstorage.service";
+import {WebstorageService} from '../../services/webstorage.service';
 
 @Component({
   selector: 'app-login',
@@ -33,7 +33,13 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/chat';
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'];
+
+    if ( this.webStorage.getLoginStatus().isLoggedIn === 'true'){
+      this.router.navigateByUrl('/chat');
+    } else {
+      this.router.navigateByUrl(this.returnUrl);
+    }
   }
 
   private createForm(): void {
@@ -52,7 +58,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           console.log('reached', this.returnUrl);
           this.webStorage.setLoginStatus(true, 'user');
           if ( isSuccess ) {
-            this.router.navigateByUrl(this.returnUrl);
+            this.router.navigateByUrl('/chat');
             this.loadingService.isLoading.next(false);
           } else {
             this.loadingService.isLoading.next(false);

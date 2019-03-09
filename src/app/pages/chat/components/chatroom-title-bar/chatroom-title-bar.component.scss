@@ -21,8 +21,12 @@
   font-weight: bold;
 }
 
+.btn:hover{
+  background-color: gray;
+  color: white;
+}
+
 .upload-btn-wrapper > input[type=file] {
-  font-size: 100px;
   position: absolute;
   left: 0;
   top: 0;

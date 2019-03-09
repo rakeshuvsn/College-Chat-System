@@ -4,12 +4,27 @@
   color: #ffffff;
 }
 
+nav {
+  background: #4caf50;
+
+  button {
+    width: auto !important;
+    color: white;
+  }
+}
+
 a {
   color: $light-grey;
-  margin-left: 3em;
-
   &.active {
     border-bottom: 3px solid $gold;
   }
+}
+
+.navbar-toggler{
+  background-color: white;
+}
+
+.nav-link{
+  color: white;
 }
 

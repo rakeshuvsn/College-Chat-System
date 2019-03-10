@@ -58,10 +58,7 @@ export class AuthService {
         const updateUser = {
           id: user.user.uid,
           email: user.user.email,
-          firstName: userObject.firstName,
-          lastName: userObject.lastName,
-          roleId: userObject.roleId,
-          photoUrl: 'https://firebasestorage.googleapis.com/v0/b/college-chat-36c01.appspot.com/o/default_profile_pic.png?alt=media&token=8f4f7703-e69c-44d8-9bc5-54a9d6806e97'
+          user: userObject
         };
 
         userRef.set(updateUser);

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewChecked, Component, Input, OnInit} from '@angular/core';
 import {ChatroomService} from '../../../../services/chatroom.service';
 import {WebstorageService} from '../../../../services/webstorage.service';
+import {Observable} from 'rxjs/Observable';
 
 
 @Component({
@@ -11,11 +12,13 @@ import {WebstorageService} from '../../../../services/webstorage.service';
 export class ChatroomListComponent implements OnInit {
 
   public currentUser: any;
+  @Input() chatRooms: any;
   constructor(
     private chatRoomService: ChatroomService,
     private webStorage: WebstorageService
   ) {
     this.currentUser = this.webStorage.getUserObject().user;
+    console.log(this.currentUser);
   }
 
   ngOnInit() {

@@ -81,4 +81,8 @@ export class ChatroomService {
       });
     });
   }
+
+  fetchChatrooms() {
+    return this.db.collection('chatrooms').valueChanges();
+  }
 }

@@ -1,14 +1,10 @@
 export class User {
-  firstName: string;
-  lastName: string;
-  photoUrl: string;
+  user: any;
   id: string;
   email: string;
 
-  constructor({firstName, lastName, photoUrl, email, id}) {
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.photoUrl = photoUrl;
+  constructor({user, email, id}) {
+    this.user = user;
     this.email = email;
     this.id = id;
   }

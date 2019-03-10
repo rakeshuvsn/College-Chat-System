@@ -21,8 +21,17 @@ export class AdminService {
     private authService: AuthService
   ) {}
 
-  registerUser(newUser): Observable<boolean> {
-    return from (this.db.collection(`users`).add(newUser).then(data => {
+  registerStudent(newUser): Observable<boolean> {
+    return from (this.db.collection(`students`).add(newUser).then(data => {
+        return true;
+      }).catch(error => {
+        return false;
+      })
+    );
+  }
+
+  registerFaculty(newUser): Observable<boolean> {
+    return from (this.db.collection(`faculty`).add(newUser).then(data => {
         return true;
       }).catch(error => {
         return false;

@@ -68,7 +68,8 @@ export class SignupComponent implements OnInit, OnDestroy {
   createStudentSignIn(userId) {
     this.subscriptions.push(
       this.httpService.fetchStudents(userId).subscribe(data => {
-        if (data.length === 1) {
+        console.log(data);
+        if (data.length === 1 && data[0].email === this.signupForm.controls['email'].value) {
           this.createUserLoginAndSignup(data[0]);
         } else {
           this.displayError('We are unable to find you, Please Contact Administrator.');

@@ -24,7 +24,6 @@ export class ChatComponent implements OnInit {
       this.router.navigateByUrl('/login');
     }
     this.chatroomService.fetchChatrooms().subscribe(rooms => {
-      console.log(rooms);
       this.chatRooms = rooms;
     });
 

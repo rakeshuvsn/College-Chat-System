@@ -16,12 +16,10 @@ export class ChatroomListComponent implements OnInit {
   constructor(
     private chatRoomService: ChatroomService,
     private webStorage: WebstorageService
-  ) {
-    this.currentUser = this.webStorage.getUserObject().user;
-    console.log(this.currentUser);
-  }
+  ) {}
 
   ngOnInit() {
+    this.currentUser = this.webStorage.getUserObject().user;
   }
 
 }

@@ -99,7 +99,7 @@ export class SignupComponent implements OnInit, OnDestroy {
       if (isSuccess) {
         this.router.navigate(['/login']);
         this.displaySuccess('Your account is created successfully, Please Login!!');
-        this.loadingService.isLoading.next(true);
+        this.loadingService.isLoading.next(false);
       } else {
         this.displayError('There is a problem in creating your account!!');
         this.loadingService.isLoading.next(false);

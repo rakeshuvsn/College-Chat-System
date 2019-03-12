@@ -7,7 +7,7 @@
       {{message.sender.user.firstName}} {{message.sender.user.lastName}}
     </div>
     <small class="timestamp">{{message.createdAt.toDate() | date: 'medium'}} </small>
-    <div *ngIf="message.message" class="message">
+    <div *ngIf="message.message" class="message" [ngStyle]="{'border': message.sender.user.role === 'Faculty' ? '1px solid green' : none }">
       {{message.message}}
     </div>
     <div *ngIf="message.attachmentUrl" class="attachments">

@@ -33,8 +33,6 @@ export class AuthService {
     this.currentUser = this.afAuth.authState.pipe(switchMap((user) => {
         if (user) {
           this.authState = user;
-          this.isLoggedIn.emit(true);
-          this.webStorage.setLoginStatus(true, 'user');
           return this.db.doc<User>(`users/${user.uid}`).valueChanges();
         } else {
           return of(null);

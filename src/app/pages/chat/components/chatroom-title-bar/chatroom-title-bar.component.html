@@ -1,0 +1,11 @@
+<div class="room-title">
+  <h4>
+    {{title}}
+    <div class="upload-btn-wrapper float-right">
+      <button class="btn" ><i class="material-icons">
+        cloud_upload
+      </i></button>
+      <input type="file" name="myfile" (change)="uploadAttachements($event.target.files)" multiple="false"/>
+    </div>
+  </h4>
+</div>

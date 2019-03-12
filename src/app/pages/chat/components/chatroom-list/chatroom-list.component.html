@@ -1,0 +1,15 @@
+<div *ngIf="chatRooms && chatRooms.length" class="h-100 d-flex flex-column chatroom-list">
+  <ng-container *ngFor="let chatroom of chatRooms">
+    <div *ngIf="currentUser && currentUser.user.role === 'Faculty'">
+      <div *ngIf="currentUser && chatroom.branchId === currentUser.user.department" class="chatroom-list-item">
+        <a [routerLink]="['/chat', chatroom.id]">{{ chatroom.name }}</a>
+      </div>
+    </div>
+    <div *ngIf="currentUser && currentUser.user.role === 'Student'">
+      <div *ngIf="currentUser && chatroom.branchId === currentUser.user.department && chatroom.year === currentUser.user.year" class="chatroom-list-item">
+        <a [routerLink]="['/chat', chatroom.id]">{{ chatroom.name }}</a>
+      </div>
+    </div>
+
+  </ng-container>
+</div>

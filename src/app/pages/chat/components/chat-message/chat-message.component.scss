@@ -1,0 +1,70 @@
+@import "../../../../../styles/variables";
+
+.chat-message{
+  padding: 1.5em;
+
+  .image-wrapper{
+    margin-right: 1em;
+    height: 50px;
+    width: 50px;
+
+    img {
+      height: 50px;
+      width: 50px;
+    }
+  }
+
+  .name {
+    text-decoration: underline;
+    font-weight: 600;
+  }
+
+  .timestamp{
+    margin-bottom: 1.5em;
+    color: darken($light-grey, 15%);
+  }
+
+  .fileName{
+    margin-bottom: 1.5em;
+    color: darken($light-grey, 15%);
+  }
+
+  .message {
+    font-size: 1.2em;
+    max-width: 300px;
+    padding: 1em;
+    background: white;
+  }
+
+  .attachments{
+    position: relative;
+    width: 200px;
+    background: white;
+  }
+
+  button {
+    width: auto !important;
+  }
+
+  .attachments .btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: #555;
+    color: #fff;
+    font-size: 16px;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+    opacity: 0.3;
+  }
+
+  .attachments .btn:hover {
+    background-color: black;
+    opacity: 0.8;
+  }
+}

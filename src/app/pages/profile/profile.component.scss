@@ -1,0 +1,41 @@
+body{
+  background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+}
+
+h2{
+  width: 100%;
+}
+
+textarea{
+  width: 100%;
+}
+
+
+.value{
+  color: #328cc1;
+}
+
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+.btn {
+  border: 2px solid gray;
+  color: gray;
+  background-color: white;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.upload-btn-wrapper > input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}

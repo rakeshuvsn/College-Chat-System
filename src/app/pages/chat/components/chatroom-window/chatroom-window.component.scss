@@ -1,0 +1,24 @@
+@import './../../../../../styles/variables';
+
+.message-wrapper{
+  overflow-y: scroll;
+  background: whitesmoke;
+  width: 100%;
+}
+
+.h-100{
+  height: 92.3% !important;
+}
+
+.select-room {
+  .select-room-message{
+    width:30%;
+    height: 5%;
+    margin-bottom: 10%;
+    border: 2px solid $gold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2em;
+  }
+}

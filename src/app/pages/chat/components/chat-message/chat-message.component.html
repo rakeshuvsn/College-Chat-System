@@ -1,0 +1,19 @@
+<div class="chat-message d-flex">
+  <div class="image-wrapper">
+    <img [src]="message.sender.user.photoUrl" alt="" class="rounded-circle">
+  </div>
+  <div class="bubble d-flex flex-column">
+    <div class="name">
+      {{message.sender.user.firstName}} {{message.sender.user.lastName}}
+    </div>
+    <small class="timestamp">{{message.createdAt.toDate() | date: 'medium'}} </small>
+    <div *ngIf="message.message" class="message" [ngStyle]="{'border': message.sender.user.role === 'Faculty' ? '1px solid green' : none }">
+      {{message.message}}
+    </div>
+    <div *ngIf="message.attachmentUrl" class="attachments">
+      <img src="{{message.attachmentUrl}}"  alt="" width="100%">
+      <button (click)="downloadAttachments()" class="btn"><i class="material-icons md-24">cloud_download</i></button>
+    </div>
+    <small *ngIf="message.name"  class="fileName">{{message.name}} </small>
+  </div>
+</div>

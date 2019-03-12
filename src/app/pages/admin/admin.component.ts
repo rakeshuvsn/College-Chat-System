@@ -45,6 +45,7 @@ export class AdminComponent implements OnInit {
       department: ['', [Validators.required]],
       section: ['', [Validators.required]],
       dob: ['', [Validators.required]],
+      year: ['', [Validators.required]],
       registeredDate: new Date(),
       photoUrl: 'https://firebasestorage.googleapis.com/v0/b/college-chat-36c01.appspot.com/o/default_profile_pic.png?alt=media&token=8f4f7703-e69c-44d8-9bc5-54a9d6806e97'
     });
@@ -87,7 +88,7 @@ export class AdminComponent implements OnInit {
   registerFaculty() {
     if (this.facultyForm.valid) {
       this.loadingService.isLoading.next(true);
-      this.adminService.registerUser(this.facultyForm.value).subscribe(isSuccess => {
+      this.adminService.registerFaculty(this.facultyForm.getRawValue()).subscribe(isSuccess => {
         if (isSuccess) {
           this.facultyForm.reset();
           this.facultyForm.controls['role'].setValue('Faculty');
@@ -105,7 +106,7 @@ export class AdminComponent implements OnInit {
   registerStudent() {
     if (this.studentForm.valid) {
       this.loadingService.isLoading.next(true);
-      this.adminService.registerUser(this.studentForm.value).subscribe(isSuccess => {
+      this.adminService.registerStudent(this.studentForm.getRawValue()).subscribe(isSuccess => {
         if (isSuccess) {
           this.studentForm.reset();
           this.studentForm.controls['role'].setValue('Student');

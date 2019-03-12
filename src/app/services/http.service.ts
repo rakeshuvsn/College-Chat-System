@@ -26,11 +26,11 @@ export class HttpService {
   }
 
   fetchStudents(userId): Observable<any> {
-    return this.db.collection('students', ref => ref.where('studentId', '==', userId)).valueChanges();
+    return this.db.collection('students', ref => ref.where('id', '==', userId)).valueChanges();
   }
 
   fetchFaculty(userId): Observable<any>  {
-    return this.db.collection('faculty', ref => ref.where('facultyId', '==', userId)).valueChanges();
+    return this.db.collection('faculty', ref => ref.where('id', '==', userId)).valueChanges();
   }
 
   fetchUserById(userId): Observable<any> {
@@ -40,7 +40,7 @@ export class HttpService {
   saveProfilePicture(file, user) {
     return this.storage.upload(`users/${file.name}`, file).then(data => {
       return data.ref.getDownloadURL().then(urlData => {
-        user.photoUrl = urlData;
+        user.user.photoUrl = urlData;
         return this.db.doc(`users/${user.id}`).set(user).then(metaData => {
           return metaData;
         }).catch(error => {

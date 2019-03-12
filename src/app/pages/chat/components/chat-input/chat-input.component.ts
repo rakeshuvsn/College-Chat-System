@@ -18,10 +18,10 @@ export class ChatInputComponent implements OnInit {
   }
 
   public submit(message: string): void {
-
-    this.chatroomService.createMessage(message);
-
-    this.newMessageText = '';
+    if (message.length > 0) {
+      this.chatroomService.createMessage(message);
+      this.newMessageText = '';
+    }
   }
 
 }

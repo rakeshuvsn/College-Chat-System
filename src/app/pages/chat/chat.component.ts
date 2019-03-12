@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {WebstorageService} from '../../services/webstorage.service';
+import { ChatroomService } from '../../services/chatroom.service';
+
 
 @Component({
   selector: 'app-chat',
@@ -8,21 +10,23 @@ import {WebstorageService} from '../../services/webstorage.service';
   styleUrls: ['./chat.component.scss']
 })
 export class ChatComponent implements OnInit {
-  private returnUrl: string;
+  public chatRooms: any;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private webStorage: WebstorageService
+    private webStorage: WebstorageService,
+    private chatroomService: ChatroomService
   ) { }
 
   ngOnInit() {
-/*    this.returnUrl = this.route.snapshot.queryParams['returnUrl'];
     if (this.webStorage.getLoginStatus().isLoggedIn !== 'true') {
       this.router.navigateByUrl('/login');
-    } else {
-      this.router.navigateByUrl(this.returnUrl);
-    }*/
+    }
+    this.chatroomService.fetchChatrooms().subscribe(rooms => {
+      this.chatRooms = rooms;
+    });
+
   }
 
 }

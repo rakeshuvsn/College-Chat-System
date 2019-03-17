@@ -50,6 +50,7 @@ import {AdminGuard} from './guards/admin.guard';
 import {WebstorageService} from './services/webstorage.service';
 import {AdminService} from './services/admin.service';
 import {HttpService} from './services/http.service';
+import { TeamComponent } from './components/team/team.component';
 
 
 
@@ -68,7 +69,8 @@ import {HttpService} from './services/http.service';
     ProfileComponent,
     AdminComponent,
     FooterComponent,
-    AdminLoginComponent
+    AdminLoginComponent,
+    TeamComponent
   ],
   imports: [
     BrowserModule,
@@ -100,7 +102,8 @@ import {HttpService} from './services/http.service';
     HttpService
   ],
   entryComponents: [
-    AdminLoginComponent
+    AdminLoginComponent,
+    TeamComponent
   ],
   bootstrap: [AppComponent]
 })

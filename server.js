@@ -11,7 +11,7 @@ const routes = [
   '/login',
   '/signup',
   '/admin/*',
-  '/chat/!*',
+  '/chat/*',
   '/profile'
 ];
 
@@ -25,7 +25,7 @@ routes.forEach(function (route) {
   });
 });
 
-app.use(express.static(path.join(__dirname, '/dist')));
+app.use('/', express.static(path.join(__dirname+'/dist')));
 // Start the app by listening on the default
 // Heroku port
 app.listen(port, function() {

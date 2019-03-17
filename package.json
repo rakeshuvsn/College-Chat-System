@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "heroku-postbuild": "npm install ng build --prod",
+    "postinstall": "npm install ng build",
     "start": "node server.js",
     "build": "npm install ng build --prod",
     "test": "ng test",

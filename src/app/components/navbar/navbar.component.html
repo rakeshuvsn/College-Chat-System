@@ -4,6 +4,8 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
+
+
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto" *ngIf="isLoggedin else loggedOut">
       <li class="nav-item active mr-2">
@@ -40,12 +42,20 @@
 <ng-template #loggedOut>
   <ul class="navbar-nav ml-auto">
     <li class="nav-item mr-2">
+      <a class="nav-link d-flex" (click)="sopportersPopup()" routerLinkActive="active" >
+        <i class="material-icons mr-1">
+          person_pin
+        </i>
+        Supported By
+        <span class="sr-only">(current)</span>
+      </a>
+    </li>
+    <li class="nav-item mr-2">
       <a class="nav-link d-flex" (click)="navigateToAdmin()" routerLinkActive="active" >
         <i class="material-icons mr-1">
           person_pin
         </i>
         Admin
-        <span class="sr-only">(current)</span>
       </a>
     </li>
     <li class="nav-item mr-2">

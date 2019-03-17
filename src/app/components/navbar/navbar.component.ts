@@ -9,6 +9,7 @@ import { AlertService } from '../../services/alert.service';
 import { Alert } from '../../classes/alert';
 import {AdminLoginComponent} from '../../pages/admin/admin-login/admin-login.component';
 import {WebstorageService} from '../../services/webstorage.service';
+import {TeamComponent} from '../team/team.component';
 
 @Component({
   selector: 'app-navbar',
@@ -62,6 +63,10 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.bsModalRef.content.closeBtnName = 'Close';
   }
 
+  sopportersPopup() {
+    this.bsModalRef = this.modalService.show(TeamComponent);
+    this.bsModalRef.content.closeBtnName = 'Close';
+  }
 
   adminLogin() {
 

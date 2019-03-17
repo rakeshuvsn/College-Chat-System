@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import { AngularFirestore } from 'angularfire2/firestore';
 import {LoadingService} from './loading.service';
-import { switchMap, map } from 'rxjs/Operators';
-import { of } from 'rxjs/Observable/of';
 import {AuthService} from './auth.service';
 import 'rxjs/add/operator/map';
 import { from } from 'rxjs';

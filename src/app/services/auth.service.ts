@@ -56,6 +56,7 @@ export class AuthService {
         const updateUser = {
           id: user.user.uid,
           email: user.user.email,
+          roleId: userObject.id,
           user: userObject
         };
 

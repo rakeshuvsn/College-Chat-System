@@ -12,8 +12,8 @@
 
 .select-room {
   .select-room-message{
-    width:30%;
-    height: 5%;
+    min-width:30%;
+    min-height: 5%;
     margin-bottom: 10%;
     border: 2px solid $gold;
     display: flex;

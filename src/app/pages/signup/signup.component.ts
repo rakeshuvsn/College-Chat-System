@@ -53,9 +53,9 @@ export class SignupComponent implements OnInit, OnDestroy {
       if ( this.signupForm.valid) {
         this.loadingService.isLoading.next(true);
         if (role === 'Student') {
-          this.createStudentSignIn(userId);
+          this.createStudentSignIn(userId, email);
         } else {
-          this.createFacultySignIn(userId);
+          this.createFacultySignIn(userId, email);
         }
       } else {
         this.displayError('Please enter valid name, email, password details');
@@ -65,29 +65,59 @@ export class SignupComponent implements OnInit, OnDestroy {
     }
   }
 
-  createStudentSignIn(userId) {
+  createStudentSignIn(userId, email) {
     this.subscriptions.push(
-      this.httpService.fetchStudents(userId).subscribe(data => {
-        console.log(data);
-        if (data.length === 1 && data[0].email === this.signupForm.controls['email'].value) {
-          this.createUserLoginAndSignup(data[0]);
-        } else {
-          this.displayError('We are unable to find you, Please Contact Administrator.');
+      this.httpService.fetchUsersByRoleId(userId).subscribe(data => {
+        if (data && data.length > 0) {
+          this.displayError('Your ID already exists as signed up User.');
           this.loadingService.isLoading.next(false);
+        } else {
+          this.httpService.fetchUsersByEmail(userId).subscribe(data1 => {
+            if (data1 && data1.length > 0) {
+              this.displayError('Your Email already exists as signed up User.');
+              this.loadingService.isLoading.next(false);
+            } else {
+              this.subscriptions.push(
+                this.httpService.fetchStudents(userId).subscribe(data2 => {
+                  if (data2.length === 1 && data2[0].email === email) {
+                    this.createUserLoginAndSignup(data2[0]);
+                  } else {
+                    this.displayError('We are unable to find you, Please Contact Administrator.');
+                    this.loadingService.isLoading.next(false);
+                  }
+                })
+              );
+            }
+          });
         }
       })
     );
-
   }
 
-  createFacultySignIn(userId) {
+  createFacultySignIn(userId, email) {
     this.subscriptions.push(
-      this.httpService.fetchFaculty(userId).subscribe(data => {
-        if (data.length === 1) {
-          this.createUserLoginAndSignup(data[0]);
-        } else {
-          this.displayError('We are unable to find you, Please Contact Administrator.');
+      this.httpService.fetchUsersByRoleId(userId).subscribe(data => {
+        if (data && data.length > 0) {
+          this.displayError('Your ID already exists as signed up User.');
           this.loadingService.isLoading.next(false);
+        } else {
+          this.httpService.fetchUsersByEmail(email).subscribe(data1 => {
+            if (data1 && data1.length > 0) {
+              this.displayError('Your Email already exists as signed up User.');
+              this.loadingService.isLoading.next(false);
+            } else {
+              this.subscriptions.push(
+                this.httpService.fetchFaculty(userId).subscribe(data2 => {
+                  if (data2.length === 1 && data2[0].email === email) {
+                    this.createUserLoginAndSignup(data2[0]);
+                  } else {
+                    this.displayError('We are unable to find you, Please Contact Administrator.');
+                    this.loadingService.isLoading.next(false);
+                  }
+                })
+              );
+            }
+          });
         }
       })
     );

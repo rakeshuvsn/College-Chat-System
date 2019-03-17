@@ -6,7 +6,7 @@ import { User } from '../classes/user';
 import { AlertService } from './alert.service';
 import { Alert } from './../classes/alert';
 import { of } from 'rxjs';
-import { switchMap } from 'rxjs/Operators';
+import { switchMap } from 'rxjs/operators';
 import { from } from 'rxjs';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';

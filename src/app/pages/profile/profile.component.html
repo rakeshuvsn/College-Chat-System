@@ -85,8 +85,10 @@
 <div class="container mb-5">
   <div class="row">
     <h2>Your Biography</h2>
-    <textarea class="value p-2" rows="5" cols="10" value="{{currentUser.user.bio}}"></textarea>
+    <textarea class="value p-2" rows="5" cols="10" [(ngModel)]="bioText"></textarea>
+    <button (click)="saveBio()" [disabled]="!bioText || bioText.length === 0" class="btn btn-primary save-bio">Save Bio</button>
   </div>
+
 </div>
 
 

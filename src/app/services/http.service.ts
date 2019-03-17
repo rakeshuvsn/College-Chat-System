@@ -33,8 +33,16 @@ export class HttpService {
     return this.db.collection('faculty', ref => ref.where('id', '==', userId)).valueChanges();
   }
 
+  fetchUsersByRoleId(userId): Observable<any> {
+    return this.db.collection('users', ref => ref.where('user.id', '==', userId)).valueChanges();
+  }
+
   fetchUserById(userId): Observable<any> {
     return this.db.doc(`users/${userId}`).valueChanges();
+  }
+
+  fetchUsersByEmail(email): Observable<any> {
+    return this.db.collection('users', ref => ref.where('email', '==', email)).valueChanges();
   }
 
   saveProfilePicture(file, user) {
@@ -47,6 +55,16 @@ export class HttpService {
           console.log(error);
         });
       });
+    });
+  }
+
+  saveBio(bioText, user) {
+    user.bio = bioText;
+    user.user.bio = bioText;
+    return this.db.doc(`users/${user.id}`).set(user).then(metaData => {
+      return metaData;
+    }).catch(error => {
+      console.log(error);
     });
   }
 }

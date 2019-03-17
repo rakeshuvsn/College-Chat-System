@@ -1,9 +1,6 @@
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
-import { switchMap } from 'rxjs/Operators';
-import { from } from 'rxjs';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { WebstorageService } from './webstorage.service';
 import {Observable} from 'rxjs';
 import { AngularFireStorage  } from '@angular/fire/storage';

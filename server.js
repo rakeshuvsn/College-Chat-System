@@ -16,16 +16,16 @@ const routes = [
 ];
 
 app.get('/', function(req, res) {
-  res.sendFile(path.join(__dirname + '/dist/College-E-Talk/index.html'));
+  res.sendFile(path.join(__dirname + 'College-E-Talk/dist/College-E-Talk/index.html'));
 });
 
 routes.forEach(function (route) {
   app.get(route, function(req, res) {
-    res.sendFile(path.join(__dirname + '/dist/College-E-Talk/index.html'));
+    res.sendFile(path.join(__dirname + 'College-E-Talk/dist/College-E-Talk/index.html'));
   });
 });
 
-app.use('/', express.static(path.join(__dirname+'/dist')));
+app.use('/', express.static(path.join(__dirname+'College-E-Talk/dist')));
 // Start the app by listening on the default
 // Heroku port
 app.listen(port, function() {

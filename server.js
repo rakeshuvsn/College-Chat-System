@@ -25,7 +25,7 @@ routes.forEach(function (route) {
   });
 });
 
-app.use('/', express.static(path.join(__dirname+'/dist')));
+app.use('/', express.static(path.join(__dirname+'/dist/College-E-Talk/index.html')));
 // Start the app by listening on the default
 // Heroku port
 app.listen(port, function() {

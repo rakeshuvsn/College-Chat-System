@@ -8,11 +8,11 @@ const path = require('path');
 const port = process.env.PORT || 8080;
 
 const routes = [
-  '/login',
-  '/signup',
-  '/admin/*',
-  '/chat/*',
-  '/profile'
+  '/College-E-Talk/login',
+  '/College-E-Talk/signup',
+  '/College-E-Talk/admin/*',
+  '/College-E-Talk/chat/*',
+  '/College-E-Talk/profile'
 ];
 
 app.get('/', function(req, res) {
@@ -25,7 +25,7 @@ routes.forEach(function (route) {
   });
 });
 
-app.use('/', express.static(path.join(__dirname+'/dist/College-E-Talk/index.html')));
+app.use('/', express.static(path.join(__dirname+'/dist')));
 // Start the app by listening on the default
 // Heroku port
 app.listen(port, function() {
